@@ -37,6 +37,12 @@ while True:
     else:
         print("Opcion invalida")
 
+        aaa
+        a
+        a
+        a
+
+
 
 
 
