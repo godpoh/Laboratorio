@@ -39,7 +39,11 @@ while True:
                 print("Opcion invalida")
 
         buy_ticket_amount = input("Ingrese la cantidad de tickets que desea comprar: ")
-
+        while True:
+            if buy_ticket_amount <= 3:
+                pass
+            else:
+                pass
     elif options == "4":
         print("Ha ingresado la opcion 4. ")
 
