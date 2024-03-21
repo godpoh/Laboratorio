@@ -15,7 +15,14 @@ class node:
             if options == "1":
                 self.startstadium()
             if options == "2":
-                pass
+                self.viewers_count()
+            if options == "3":
+                self.buy_tickets()
+            if options == "4":
+                self.ticket_sale()
+            if options == "5":
+                break
+
     def startstadium(self):
         matriz = []
         rows = "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"
