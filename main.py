@@ -1,9 +1,26 @@
 import random
 import time
 from colorama import Fore, init
+import json
+import datetime
 import random as rd
 
 init(autoreset=True)
+
+class JsonDataManager:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def guardar_datos(self, datos):
+        with open(self.filename, "w") as file:
+            json.dump(datos, file)
+
+    def cargar_datos(self):
+        try:
+            with open(self.filename, "r") as file:
+                return json.load(file)
+        except FileNotFoundError:
+            return []
 
 class main:
     def __init__(self):
@@ -20,12 +37,13 @@ class main:
             print("4. Reporte de Ventas")
             print("5. Salir.")
             print("----------------------------------------------------")
+
             options = input("Selecciona una opcion: ")
 
             if options == "1":
                 self.startstadium_price_seats()
             if options == "2":
-                self.viewers_count()
+                self.spectator_registration()
             if options == "3":
                 self.buy_tickets()
             if options == "4":
@@ -69,14 +87,27 @@ class main:
             else:
                 optional = input("Introduzca SI ó NO: ")
 
-    def viewers_count(self):
-        pass
+    def spectator_registration(self):
+        id = input("Introduzca su cedula: ")
+        name = input("Introduzca su nombre: ")
+        lastname = input("Introduzca su primer apellido: ")
+        gender = input("Introduzca su su genero")
 
     def buy_tickets(self):
-        pass
+        id = print("Introduzca su cedula: ")
+
+    def price_calculator(self, fila):
+        fila_numero = int(fila[:-1])
+        if fila_numero >= 8:
+            return 15000
+        elif 5 <= fila_numero <= 7:
+            return 10000
+        else:
+            return 5000
 
     def ticket_sale(self):
-        pass
+        print("\nReporte de Ventas:")
+        print("Cantidad de boletos comprados por género:")
 
 
 test = main()
