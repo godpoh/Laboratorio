@@ -5,22 +5,9 @@ import json
 import datetime
 import random as rd
 
+
+
 init(autoreset=True)
-
-class JsonDataManager:
-    def __init__(self, filename):
-        self.filename = filename
-
-    def guardar_datos(self, datos):
-        with open(self.filename, "w") as file:
-            json.dump(datos, file)
-
-    def cargar_datos(self):
-        try:
-            with open(self.filename, "r") as file:
-                return json.load(file)
-        except FileNotFoundError:
-            return []
 
 class main:
     def __init__(self):
@@ -52,7 +39,6 @@ class main:
                 break
 
     def startstadium_price_seats(self):
-        matriz = []
         rows = "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"
         columns = 'A', 'B', 'C', 'D', 'E', 'F', "G", 'H', 'I', 'J'
 

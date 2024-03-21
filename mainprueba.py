@@ -1,13 +1,22 @@
 import random
 import time
 from colorama import Fore, init
+import json
+import datetime
 import random as rd
+
+filename = 'manager.json'
+
+with open(filename, 'r') as file:
+    data = json.load(file)
+
 init(autoreset=True)
 
 class main:
     def __init__(self):
-        self.main = []
-        self.matriz = None
+        filename = 'manager.json'
+        with open(filename, 'r') as file:
+            data = json.load(file)
 
     def principal_menu(self):
         while True:
@@ -19,12 +28,13 @@ class main:
             print("4. Reporte de Ventas")
             print("5. Salir.")
             print("----------------------------------------------------")
+
             options = input("Selecciona una opcion: ")
 
             if options == "1":
                 self.startstadium_price_seats()
             if options == "2":
-                self.viewers_count()
+                self.spectator_registration()
             if options == "3":
                 self.buy_tickets()
             if options == "4":
@@ -33,7 +43,6 @@ class main:
                 break
 
     def startstadium_price_seats(self):
-        matriz = []
         rows = "10", "9", "8", "7", "6", "5", "4", "3", "2", "1"
         columns = 'A', 'B', 'C', 'D', 'E', 'F', "G", 'H', 'I', 'J'
 
@@ -59,7 +68,7 @@ class main:
                 print("De la fila 1 a 4 el precio es de 5000 Colones")
                 print("----------------------------------------------------")
                 print("Volviendo al menu principal")
-                time.sleep(12)
+                time.sleep(10)
                 return
             elif optional.lower() == 'no':
                 print("Volviendo al menu principal...")
@@ -68,13 +77,28 @@ class main:
             else:
                 optional = input("Introduzca SI ó NO: ")
 
-    def viewers_count(self):
-        pass
+    def spectator_registration(self):
+        id = input("Introduzca su cedula: ")
+        name = input("Introduzca su nombre: ")
+        lastname = input("Introduzca su primer apellido: ")
+        gender = input("Introduzca su su genero")
+
     def buy_tickets(self):
-        pass
+        id = print("Introduzca su cedula: ")
+
+    def price_calculator(self, fila):
+        fila_numero = int(fila[:-1])
+        if fila_numero >= 8:
+            return 15000
+        elif 5 <= fila_numero <= 7:
+            return 10000
+        else:
+            return 5000
 
     def ticket_sale(self):
-        pass
+        print("\nReporte de Ventas:")
+        print("Cantidad de boletos comprados por género:")
+
 
 test = main()
 test.principal_menu()
