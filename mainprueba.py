@@ -7,16 +7,15 @@ import random as rd
 
 filename = 'manager.json'
 
-with open(filename, 'r') as file:
-    data = json.load(file)
-
 init(autoreset=True)
 
 class main:
     def __init__(self):
         filename = 'manager.json'
         with open(filename, 'r') as file:
-            data = json.load(file)
+            self.data = json.load(file)
+        self.busy_seats = {(seat['row'], seat['column']) for seat in self.data['busy_seats']}
+
 
     def principal_menu(self):
         while True:
@@ -49,6 +48,13 @@ class main:
         red_seats = set()
         while len(red_seats) < 15:
             red_seats.add((random.choice(rows), random.choice(columns)))
+
+        self.busy_seats.update(red_seats)
+
+        # Actualizar archivo JSON con los asientos ocupados
+        self.data['busy_seats'] = [{'row': row, 'column': column} for row, column in self.busy_seats]
+        with open(filename, 'w') as file:
+            json.dump(self.data, file, indent=2)
 
         for row in rows:
             for column in columns:
@@ -97,8 +103,7 @@ class main:
 
     def ticket_sale(self):
         print("\nReporte de Ventas:")
-        print("Cantidad de boletos comprados por género:")
-
+        print("Cantidad de boletos comprados por persona:")
 
 test = main()
 test.principal_menu()
